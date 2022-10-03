@@ -81,14 +81,17 @@ const Control = ({
   onVolumeSeekUp,
   volume,
   mute,
-  onMute
+  onMute,
+  duration,
+  currentTime,
+  onMouseSeekDown,
+  controlRef
 }) => {
   const classes = useStyles();
 
-  const playBackRate = [0.5, 1, 1.5, 2];
 
   return (
-    <div className="control_Container">
+    <div className="control_Container" ref ={controlRef}>
       <div className="top_container">
         <h2>Video PLayer</h2>
       </div>
@@ -117,6 +120,7 @@ const Control = ({
             value={played * 100}
             onChange={onSeek}
             onChangeCommitted={onSeekMouseUp}
+            onMouseDown={onMouseSeekDown}
           />
         </div>
         <div className="control__box">
@@ -148,31 +152,9 @@ const Control = ({
               onChangeCommitted={onVolumeSeekUp}
             />
 
-            <span>5/20</span>
+            <span>{ currentTime} : {duration}</span>
           </div>
-          <div className="second__control">
-            <Button variant="text" className={`${classes.bottomIcons}`}>
-              <span> 4x</span>
-            </Button>
-            <Popover
-              anchorOrigin={{
-                vertical: "top",
-                horizontal: "center",
-              }}
-              transformOrigin={{
-                vertical: "bottom",
-                horizontal: "center",
-              }}
-            >
-              <Grid container direction="column-reverse">
-                {playBackRate.map((rate) => (
-                  <Button variant="text">
-                    <span key={rate}> {rate}x</span>
-                  </Button>
-                ))}
-              </Grid>
-            </Popover>
-          </div>
+          
         </div>
       </div>
     </div>
