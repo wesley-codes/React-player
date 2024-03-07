@@ -156,7 +156,6 @@ function App() {
             onVolumeSeekUp={volumeSeekUpHandler}
             mute={muted}
             onMute={muteHandler}
-            playRate={playbackRate}
             duration={formatDuration}
             currentTime={formatCurrentTime}
             onMouseSeekDown={onSeekMouseDownHandler}
